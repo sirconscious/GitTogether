@@ -129,7 +129,7 @@
   --foreground: oklch(0.8109 0 0);
   --card: oklch(0.1822 0 0);
   --card-foreground: oklch(0.8109 0 0);
-  --popover: oklch(0.1797 0.0043 308.1928);
+  --popover: #121113;
   --popover-foreground: oklch(0.8109 0 0);
   --primary: oklch(0.7214 0.1337 49.9802);
   --primary-foreground: oklch(0.1797 0.0043 308.1928);
@@ -142,9 +142,9 @@
   --destructive: oklch(0.5940 0.0443 196.0233);
   --border: oklch(0.2520 0 0);
   --input: oklch(0.2520 0 0);
-  --ring: oklch(0.7214 0.1337 49.9802);
+  --ring: #e78a53;
   --chart-1: oklch(0.5940 0.0443 196.0233);
-  --chart-2: oklch(0.7214 0.1337 49.9802);
+  --chart-2: #e78a53;
   --chart-3: oklch(0.8721 0.0864 68.5474);
   --chart-4: oklch(0.6268 0 0);
   --chart-5: oklch(0.6830 0 0);
@@ -187,4 +187,53 @@
     @apply bg-background text-foreground;
     letter-spacing: var(--tracking-normal);
   }
+} 
+
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
+
+.animated-gradient {
+  background: linear-gradient(
+    56deg,
+    rgba(231,138,83,1) 0%,
+    rgba(34,34,34,1) 50%,
+    rgba(251,203,151,1) 100%
+  );
+  background-size: 200% 200%;
+  animation: gradientShift 10s ease infinite;
+}
+ 
+/* Put this in your global CSS (e.g., index.css or tailwind.css) */
+/* global CSS */
+@keyframes gradientMove {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animated-gradient2 {
+  background: linear-gradient(
+    90deg,
+    rgba(18, 17, 19, 0.87),
+    rgba(231, 138, 83, 1),
+    rgba(18, 17, 19, 0.77)
+  );
+  background-size: 200% 200%;
+  animation: gradientMove 6s ease infinite;
+}
+
+/* add variants with staggered delays */
+.animated-gradient.delay-1 { animation-delay: 0s; }
+.animated-gradient.delay-2 { animation-delay: 1.5s; }
+.animated-gradient.delay-3 { animation-delay: 3s; }
+.animated-gradient.delay-4 { animation-delay: 4.5s; }
