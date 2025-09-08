@@ -9,16 +9,18 @@ export function LoginForm({
   className,
   ...props
 }: React.ComponentProps<"div">) {
-  return (
+  return ( 
+    <div className="dark">
+
     <div className={cn("flex flex-col items-center justify-center min-h-screen p-4", className)} {...props}>
-      <Card className="w-full max-w-3xl overflow-hidden shadow-lg">
+<Card className="w-full max-w-3xl overflow-hidden shadow-lg bg-[rgba(255,255,255,0.1)] backdrop-blur-md">
         <CardContent className="">
           {/* Left Form Section */}
           <form className="p-8 flex flex-col gap-6">
             <div className="flex flex-col items-center text-center gap-2">
               <h1 className="text-3xl font-bold text-primary">Welcome back</h1>
               <p className="text-muted-foreground text-sm">
-                Login to your Acme GitTogether account
+                Login to your GitTogether account
               </p>
             </div>
 
@@ -58,6 +60,8 @@ export function LoginForm({
         By continuing, you agree to our <a href="#" className="text-primary underline">Terms of Service</a> and <a href="#" className="text-primary underline">Privacy Policy</a>.
       </p> 
         {/* <DarkModeToggle/> */}
-    </div>
+    </div> 
+        </div>
+
   )
 }
