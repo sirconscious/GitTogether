@@ -189,7 +189,6 @@
   }
 } 
 
-
 @keyframes gradientShift {
   0% {
     background-position: 0% 50%;
@@ -212,7 +211,7 @@
   background-size: 200% 200%;
   animation: gradientShift 10s ease infinite;
 }
- 
+
 /* Put this in your global CSS (e.g., index.css or tailwind.css) */
 /* global CSS */
 @keyframes gradientMove {
