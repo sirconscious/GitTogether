@@ -1,33 +1,29 @@
 import React from 'react'
+import { motion } from 'framer-motion'
 import type { JSX } from 'react' 
 import MagicBento from './MagicBento' 
-import  LiquidEther  from './LiquidEther'
+
 export default function Features(): JSX.Element {
   return (
-    <div className='relative h-screen flex  flex-col justify-center items-center bg-background p-8 overflow-hidden'>
-     
-<div style={{ width: '100%', height: '100%', position: 'absolute' }} >
-  <LiquidEther
-    colors={[ '#e78a53',  '#fbcb97' ,'#e78a53']}
-    mouseForce={20}
-    cursorSize={50}
-    isViscous={true}
-    viscous={30}
-    iterationsViscous={32}
-    iterationsPoisson={32}
-    resolution={0.5}
-    isBounce={true}
-    autoDemo={true} 
-    
-    autoSpeed={0.6}
-    autoIntensity={2.2}
-    takeoverDuration={0.25}
-    autoResumeDelay={3000}
-    autoRampDuration={0.6}
-    />
-    </div>    
-        <h1 className='text-4xl text-foreground text-bold'>Why choose GitTogether</h1>
-        <MagicBento />
-    </div>
+    <motion.div
+      className='relative z-20 flex flex-col justify-center items-center bg-background p-8 overflow-hidden'
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, ease: 'easeOut' }}
+      viewport={{ once: true, amount: 0.3 }}
+    >
+      <h1 className='text-4xl text-sidebar-ring font-bold mb-6'>Why choose GitTogether</h1>
+      <MagicBento 
+        textAutoHide={true}
+        enableStars={true}
+        enableSpotlight={true}
+        enableBorderGlow={true}
+        enableTilt={true}
+        enableMagnetism={true}
+        clickEffect={true}
+        spotlightRadius={300}
+        particleCount={12}
+      />  
+    </motion.div>
   )
 }

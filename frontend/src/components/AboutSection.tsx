@@ -2,7 +2,6 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import type { JSX } from 'react'
 import image from "../assets/image.png"
-
 export default function AboutSection(): JSX.Element {
   const containerVariants = {
     hidden: { opacity: 0, y: 50 },
@@ -21,7 +20,8 @@ export default function AboutSection(): JSX.Element {
       whileInView="visible"
       viewport={{ once: true, amount: 0.3 }}
       variants={containerVariants}
-    >
+    > 
+  
       <motion.h1
         className='text-4xl'
         initial={{ opacity: 0, y: -20 }}
@@ -48,14 +48,14 @@ export default function AboutSection(): JSX.Element {
       />
 
       {/* Animated gradient blurs */}
-      <motion.div 
+      {/* <motion.div 
 
       className="absolute left-0 sm:w-[300px] sm:h-[300px] blur-3xl animated-gradient"></motion.div>
       <motion.div  
       
       className="absolute left-0 bottom-0 sm:w-[300px] sm:h-[300px] blur-xl animated-gradient"></motion.div>
       <div className="absolute right-0 sm:w-[300px] sm:h-[300px] blur-3xl animated-gradient"></div>
-      <div className="absolute right-0 bottom-0 sm:w-[300px] sm:h-[300px] blur-xl animated-gradient"></div>
+      <div className="absolute right-0 bottom-0 sm:w-[300px] sm:h-[300px] blur-xl animated-gradient"></div> */}
     </motion.div>
   )
 }

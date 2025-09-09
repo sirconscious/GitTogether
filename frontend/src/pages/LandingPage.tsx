@@ -12,8 +12,8 @@ export default function LandingPage(): JSX.Element {
     <div className="h-full w-screen overflow-x-hidden">
       <HeroSection/>
     <AboutSection /> 
-    {/* <LaserFlowBoxExample/>  */}
     <Features />
+    {/* <LaserFlowBoxExample/>  */}
         </div>
 
   );
