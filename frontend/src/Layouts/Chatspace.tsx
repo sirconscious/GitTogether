@@ -1,18 +1,21 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
+import { useState , useEffect } from "react"; 
+import { useContext } from "react"; 
+import { useAuth } from "@/context/AuthContext";
 import { 
   Home, User, Settings, LogOut, Menu, X, GitBranch, Activity, Users, Star,
   Send, Paperclip, Smile, MoreVertical, Phone, Video, Search, Hash,
   Circle, MessageSquare, Clock, Check, CheckCheck
 } from "lucide-react";
-
+import axios from "axios";
 export default function ChatSpace() {
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [selectedChat, setSelectedChat] = useState(0);
   const [message, setMessage] = useState("");
-  const [userListOpen, setUserListOpen] = useState(true);
-
+  const [userListOpen, setUserListOpen] = useState(true); 
+  const { authToken, setAuthToken } = useAuth(); 
+  const [users , setUsers] = useState([]);
   const menuItems = [
     { icon: <Home size={20} />, label: "Dashboard" },
     { icon: <MessageSquare size={20} />, label: "Chat", active: true },
@@ -22,7 +25,31 @@ export default function ChatSpace() {
     { icon: <User size={20} />, label: "Profile" },
     { icon: <Settings size={20} />, label: "Settings" },
   ];
+    useEffect(() => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const token = urlParams.get('token') || sessionStorage.getItem("authToken");
+      if (token) {
+        setAuthToken(token);  
+      }
+    }, [setAuthToken]);
 
+    useEffect(() => {
+      if (!authToken) return; // wait for token
+      const fetchUsers = async () => {
+        try {
+          const res = await axios.get(import.meta.env.VITE_BACKEND_URL + '/api/users', {
+            headers: {
+              Accept: 'application/json',
+              Authorization: `Bearer ${authToken}`
+            }
+          });
+          setUsers(res.data.users);
+        } catch (error) {
+          console.error("Error fetching users:", error);
+        }
+      }
+      fetchUsers();
+    }, [authToken]);    console.log("users", users);
   const conversations = [
     {
       id: 1,
@@ -243,9 +270,9 @@ export default function ChatSpace() {
 
           {/* Conversations */}
           <div className="flex-1 overflow-y-auto">
-            {conversations.map((conv, index) => (
+            {users.map((user, index) => (
               <div
-                key={conv.id}
+                key={user?.id}
                 onClick={() => setSelectedChat(index)}
                 className={`
                   p-4 border-b border-border/20 cursor-pointer transition-all duration-200
@@ -255,30 +282,28 @@ export default function ChatSpace() {
                 <div className="flex items-center gap-3">
                   <div className="relative">
                     <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center text-xl">
-                      {conv.avatar}
+                      👨‍💼
                     </div>
-                    {conv.online && (
                       <Circle className="absolute -bottom-1 -right-1 w-4 h-4 fill-green-500 text-green-500" size={16} />
-                    )}
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center justify-between">
                       <h3 className="font-semibold text-foreground truncate flex items-center gap-2">
-                        {conv.name}
-                        {conv.type === 'group' && <Hash size={12} className="text-muted-foreground" />}
+                        {user?.name}
+                        {/* {user.type === 'group' && <Hash size={12} className="text-muted-foreground" />} */}
                       </h3>
-                      <span className="text-xs text-muted-foreground">{conv.timestamp}</span>
+                      <span className="text-xs text-muted-foreground"></span>
                     </div>
-                    <p className="text-sm text-muted-foreground truncate">{conv.lastMessage}</p>
+                    <p className="text-sm text-muted-foreground truncate"></p>
                     <div className="flex items-center justify-between mt-1">
-                      {conv.type === 'group' && (
+                      {/* {conv.type === 'group' && (
                         <span className="text-xs text-muted-foreground">{conv.members} members</span>
-                      )}
-                      {conv.unread > 0 && (
+                      )} */}
+                      {/* {conv.unread > 0 && (
                         <div className="w-5 h-5 bg-primary rounded-full flex items-center justify-center">
                           <span className="text-xs text-white font-medium">{conv.unread}</span>
                         </div>
-                      )}
+                      )} */}
                     </div>
                   </div>
                 </div>
