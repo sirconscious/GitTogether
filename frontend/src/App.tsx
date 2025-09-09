@@ -5,7 +5,8 @@ import LoginLayout from "./Layouts/LoginLayout"
 import Main from "./Layouts/Main"  
 import DashboardLayout from "./Layouts/DashboardLayout"
 import { BrowserRouter , Route ,Routes , } from "react-router-dom" 
-import LandingPage from "./pages/LandingPage"
+import LandingPage from "./pages/LandingPage" 
+import ChatSpace from "./Layouts/Chatspace"
 function App() {
   return (
     <>
@@ -16,6 +17,7 @@ function App() {
                 </Route> 
                 <Route path="/login" element={<LoginLayout />} />
                 <Route path="/dashboard" element={<DashboardLayout />} />
+                <Route path="/messages" element={<ChatSpace />} />
                
               </Routes>
     </BrowserRouter>
