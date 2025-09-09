@@ -6,7 +6,7 @@ export default function HeroSection() {
       const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-  <div className="relative h-screen w-screen flex flex-col items-center justify-center ">
+  <div className="relative z-20 h-screen w-screen flex flex-col items-center justify-center ">
 
       {/* Navigation */}
       <motion.nav
@@ -30,7 +30,7 @@ export default function HeroSection() {
 
           {/* CTA Button */}
           <div className="hidden md:block">
-            <Link to="/login" className="bg-accent text-accent-foreground px-4 py-2 rounded-md font-semibold hover:opacity-90 transition-opacity">
+            <Link to="/login" className="bg-ring  text-accent-foreground px-4 py-2 rounded-md font-semibold hover:opacity-90 transition-opacity">
               Get Started
             </Link>
           </div>
@@ -61,18 +61,18 @@ export default function HeroSection() {
               className="text-foreground focus:outline-none"
             >
              <svg
-  className="w-6 h-6"
-  fill="none"
-  stroke="currentColor"
-  strokeWidth="2"
-  viewBox="0 0 24 24"
->
-  <path
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    d="M6 18L18 6M6 6l12 12"
-  />
-</svg>
+      className="w-6 h-6"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      viewBox="0 0 24 24"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M6 18L18 6M6 6l12 12"
+      />
+    </svg>
 
             </button>
           </div>
