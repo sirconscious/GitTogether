@@ -3,11 +3,11 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { FaGithub, FaGoogle } from "react-icons/fa"
 import { motion } from "framer-motion"
-
 export function LoginForm({
   className,
   ...props
-}: React.ComponentProps<"div">) {
+}: React.ComponentProps<"div">) {  
+
   return (
     <div className="dark">
       <div
