@@ -34,9 +34,10 @@ Route::middleware(['web'])->group(function () {
 
             // Log the user in
             Auth::login($user);
+            $token = $user->createToken('google')->plainTextToken;
 
             // Return the redirect with proper syntax
-            return redirect(env('FRONTEND_URL', 'http://localhost:5173') . '/messages');
+            return redirect(env('FRONTEND_URL', 'http://localhost:5173') . '/dashboard?token=' . $token);
             
         } catch (\Laravel\Socialite\Two\InvalidStateException $e) {
             // Redirect back to login or handle the error
@@ -61,9 +62,9 @@ Route::middleware(['web'])->group(function () {
 
             // Log the user in
             Auth::login($user);
-
+            $token = $user->createToken('github')->plainTextToken;
             // Return the redirect with proper syntax
-            return redirect(env('FRONTEND_URL', 'http://localhost:5173') . '/messages');
+            return redirect(env('FRONTEND_URL', 'http://localhost:5173') . '/dashboard?token=' . $token);
             
         } catch (\Laravel\Socialite\Two\InvalidStateException $e) {
             // Redirect back to login or handle the error
