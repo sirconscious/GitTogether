@@ -12,7 +12,7 @@ class sendMessage extends Command
      *
      * @var string
      */
-    protected $signature = 'send:message {--message=} {--receiver_id=}';
+    protected $signature = 'send:message {--content=} {--reciverId=} {--senderId=}';
 
     /**
      * The console command description.
@@ -26,12 +26,13 @@ class sendMessage extends Command
      */
     public function handle()
     {
-        $message = $this->option('message');
-        $receiver_id = $this->option('receiver_id');
-
+        $content = $this->option('content');
+        $reciverId = $this->option('reciverId');
+        $senderId = $this->option("senderId") ;
         event(new MessageEvent([
-            'message' => $message,
-            'receiver_id' => $receiver_id
+            'content' => $content,
+            'reciverId' => $reciverId , 
+            'senderId' => $senderId
         ]));
 
         $this->info('Message sent successfully!');

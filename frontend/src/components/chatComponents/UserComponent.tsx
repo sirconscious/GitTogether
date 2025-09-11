@@ -2,7 +2,7 @@ import { useUserContext } from '@/context/userContext'
 import axios from 'axios';
 import React, { useEffect } from 'react'
 import type { JSX } from "react"
-
+import { Link } from 'react-router-dom';
 export default function UserComponent(): JSX.Element {
   const user = useUserContext();
   const [users, setUsers] = React.useState([]);
@@ -37,6 +37,7 @@ export default function UserComponent(): JSX.Element {
   const LoadingSkeleton = () => (
     <div className="space-y-4 p-6">
       {[...Array(5)].map((_, i) => (
+        
         <div 
           key={i} 
           className="relative overflow-hidden bg-card border border-border rounded-xl p-6 animate-pulse"
@@ -57,6 +58,7 @@ export default function UserComponent(): JSX.Element {
   );
 
   const UserCard = ({ u, index }: { u: any, index: number }) => (
+    <Link to={`/dashboard/chat/${u.id}`}>
     <div 
       className={`group relative overflow-hidden bg-card border border-border rounded-xl p-6 hover:border-primary/50 transition-all duration-300 hover:scale-[1.01] hover:shadow-lg hover:shadow-primary/5 ${index % 3 === 0 ? 'hover:bg-primary/5' : index % 3 === 1 ? 'hover:bg-secondary/5' : 'hover:bg-accent/50'}`}
     >
@@ -111,7 +113,9 @@ export default function UserComponent(): JSX.Element {
       {/* Floating particles effect */}
       <div className="absolute top-4 right-4 w-2 h-2 bg-primary/20 rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-ping"></div>
       <div className="absolute bottom-6 left-20 w-1 h-1 bg-secondary/30 rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-pulse delay-300"></div>
-    </div>
+    </div> 
+        </Link>
+
   );
 
   return (

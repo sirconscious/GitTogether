@@ -25,7 +25,7 @@ const [user, setUser] = useState<userType>(() => {
           <Route path="/login" element={<PublicRoute><LoginLayout /></PublicRoute> } />
           <Route path="/dashboard" element={<DashboardLayout />} > 
               <Route  index  element={<h1>This is a test</h1>} /> 
-              <Route path="chat" element={<PrivateRoute><ChatPage/></PrivateRoute>} />
+              <Route path="chat/:id?" element={<PrivateRoute><ChatPage/></PrivateRoute>} />
           </Route>
         </Routes>
       </BrowserRouter> 

@@ -31,7 +31,7 @@ class MessageEvent implements ShouldBroadcast
      */
     public function broadcastOn(): array
     {
-        $user_id = $this->message['receiver_id'];
+        $user_id = $this->message['reciverId'];
         return [
             new PrivateChannel('user.'.$user_id),
         ];
