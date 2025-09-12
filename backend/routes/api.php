@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\MessageController;
+use App\Http\Controllers\EmailSender;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -18,4 +19,5 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/chat', [MessageController::class, 'store'])->name('user.chat.store');
 });
 
-Route::post('/login', [AuthController::class, 'login'])->name('user.login');  
+Route::post('/login', [AuthController::class, 'login'])->name('user.login');   
+Route::post("/sendMail" ,[EmailSender::class , "index"])->name("mail.send") ; 

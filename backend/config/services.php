@@ -44,5 +44,10 @@ return [
         'client_id' => env('GITHUB_CLIENT_ID'),
         'client_secret' => env('GITHUB_CLIENT_SECRET'),
         'redirect' => env('GITHUB_REDIRECT_URL'),
-    ],
+    ], 
+    'sendgrid' => [
+    'key' => env('SENDGRID_API_KEY'),
+    'from_email' => env('SENDGRID_FROM_EMAIL'),
+    'from_name' => env('SENDGRID_FROM_NAME', 'GitTogether'),
+],
 ];

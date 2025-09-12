@@ -50,13 +50,13 @@ export default function ChatSpace() {
     console.log("Token:", sessionStorage.getItem("token"));
 
     // Check if Echo is connected
-    // echo.connector.pusher.connection.bind('connected', () => {
-    //     console.log('✅ Successfully connected to Reverb');
-    // });
+    echo.connector.pusher.connection.bind('connected', () => {
+        console.log('✅ Successfully connected to Reverb');
+    });
 
-    // echo.connector.pusher.connection.bind('error', (error: any) => {
-    //     console.error('❌ Connection error:', error);
-    // });
+    echo.connector.pusher.connection.bind('error', (error: any) => {
+        console.error('❌ Connection error:', error);
+    });
 
     echo.connector.pusher.connection.bind("disconnected", () => {
       console.log("🔌 Disconnected from Reverb");
