@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Team;
+use App\Models\Team_Invite;
 use Illuminate\Http\Request;
 use SendGrid\Mail\Mail;
-
+use Illuminate\Support\Str;
 class EmailSender extends Controller
 {
     public function sendTeamInvite(Request $request)
@@ -19,10 +20,16 @@ class EmailSender extends Controller
         $team = Team::findOrFail($request->team_id);
         
         $user = auth()->user();
-        $token = $user->createToken('team-invite', ['team:join'], now()->addHours(3));
-        
+        $token = Str::random(16);
+        $invite= Team_Invite::create([
+            "sender_id" => auth()->user()->id,
+            "reciver_email"=>$receiverMail ,
+            "token" =>$token , 
+            "teamId" => $team->id,
+            "expire_date" => now()->addHours(6)
+        ]) ;
         // Include token in the link
-        $inviteLink = "http://localhost:8000/api/accept/{$token->plainTextToken}?team_id={$team->id}";
+        $inviteLink = "http://localhost:8000/api/accept/{$token}?invite_id={$invite->id}";
         
         $htmlContent = view('Email.template', [
             'inviterName' => $user->name,
