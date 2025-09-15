@@ -9,7 +9,8 @@ import ChatPage from "./pages/ChatPage";
 import { userContext } from "./context/userContext"; 
 import type { userType } from "./context/userContext"; 
 import PrivateRoute from "./context/PrivateRoute"; 
-import PublicRoute from "./context/PublicRoute";
+import PublicRoute from "./context/PublicRoute"; 
+import TeamsPage from "./pages/TeamsPage";
 function App() {
 const [user, setUser] = useState<userType>(() => {
   const saved = sessionStorage.getItem("user");
@@ -26,6 +27,7 @@ const [user, setUser] = useState<userType>(() => {
           <Route path="/dashboard" element={<DashboardLayout />} > 
               <Route  index  element={<h1>This is a test</h1>} /> 
               <Route path="chat/:id?" element={<PrivateRoute><ChatPage/></PrivateRoute>} />
+              <Route path="teams" element={<PrivateRoute><TeamsPage/></PrivateRoute>} />
           </Route>
         </Routes>
       </BrowserRouter> 

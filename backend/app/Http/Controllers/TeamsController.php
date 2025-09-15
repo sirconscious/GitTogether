@@ -73,5 +73,17 @@ class TeamsController extends Controller
         $teams = Team::withCount('users')->get();
         
         return response()->json($teams);
+    } 
+    public function getTeamUsers(Request $request){
+        $team = auth()->user()->teams()->first();
+    
+        if (!$team) {
+            return response()->json(['message' => 'User does not belong to any team'], 404);
+        }
+        $users = $team->users;
+        return response()->json($users);
+    }
+    public function teams(){
+        
     }
 }

@@ -20,7 +20,7 @@ export default function SideBar() {
     { icon: <Home size={20} />, label: "Dashboard" , link : "/dashboard"},
     { icon: <MessageSquare size={20} />, label: "Chat", link: "/dashboard/chat" },
     { icon: <GitBranch size={20} />, label: "Repositories" },
-    { icon: <Users size={20} />, label: "Teams" },
+    { icon: <Users size={20} />, label: "Teams" ,link: "/dashboard/teams"},
     { icon: <Activity size={20} />, label: "Activity" },
     { icon: <User size={20} />, label: "Profile" },
     { icon: <Settings size={20} />, label: "Settings" },

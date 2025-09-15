@@ -23,6 +23,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post("/team",[TeamsController::class , 'store'])->name("team.store");
     Route::get("/team",[TeamsController::class , "index"])->name("user.team") ;
     Route::post("/sendMail" ,[EmailSender::class , "sendTeamInvite"])->name("mail.send") ;  
+    Route::get("/team/users",[TeamsController::class , "getTeamUsers"])->name("team.users");
 });
 
 Route::post('/login', [AuthController::class, 'login'])->name('user.login');   
